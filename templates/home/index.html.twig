@@ -64,11 +64,51 @@
                         </p>
                     </td>
                     <td>
-                        <p class="starter">{% for starter in day.dinnerOfTheDay.starters.toArray %} <span>{{ starter }}</span>  {% endfor %}</p>
+                        <p class="starter">
+                            {% for starter in day.dinnerOfTheDay.starters.toArray %}
+
+                                <span class="{{ starter.type.slug }}">{{ starter }}
+                                    {% if starter.category%}
+                                        {% for category in starter.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
                         <hr>
-                        <p class="dish">{% for dish in day.dinnerOfTheDay.dishes.toArray %} {{ dish }} {% endfor %}</p>
+                        <p class="dish">
+                            {% for dish in day.dinnerOfTheDay.dishes.toArray %}
+                                <span class="{{ dish.type.slug }}">{{ dish }}
+                                    {% if dish.category%}
+                                        {% for category in dish.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
                         <hr>
-                        <p class="dessert">{% for dessert in day.dinnerOfTheDay.desserts.toArray %} {{ dessert }} {% endfor %}</p>
+                        <p class="dessert">
+                            {% for dessert in day.dinnerOfTheDay.desserts.toArray %}
+                                <span class="{{ dessert.type.slug }}">{{ dessert }}
+                                    {% if dessert.category%}
+                                        {% for category in dessert.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
                     </td>
                 </tr>
             {% endfor %}
