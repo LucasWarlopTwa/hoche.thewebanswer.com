@@ -1,0 +1,30 @@
+body {
+  background: linear-gradient(#ACCBEE, #E7F0FD) no-repeat;
+  padding: 0 100px;
+  font-family: sans-serif;
+}
+h1 {
+  font-size: 3.4rem;
+  font-weight: bolder;
+  font-family: serif;
+}
+header {
+  display: flex;
+  align-items: baseline;
+  img {
+    width: 50px;
+    margin-right: 10px;
+  }
+  padding: 50px 0;
+}
+.legends {
+  padding: 50px 0;
+  display: flex;
+  justify-content: space-between;
+  aside {
+    width: 400px;
+    img {
+      width: 30px;
+    }
+  }
+}

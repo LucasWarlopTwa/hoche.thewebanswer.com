@@ -1,0 +1,59 @@
+table {
+  align-items: center;
+border-radius: 10px;
+  th, td {
+    border: black solid 2px;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  tr {
+    align-items: center;
+  }
+  .starter, .dish , .dessert {
+    img {
+      margin-left: 5px;
+      width: 20px;
+      align-items: baseline;
+    }
+    text-align: center;
+    span:not(:last-child):after {
+      content: '|';
+      color: blue;
+      margin-left: 5px;
+    }
+  }
+}
+hr {
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  overflow: visible;
+  text-align: center;
+  height: 5px;
+}
+span {
+  display: inline-flex;
+  align-items: center;
+  margin: 5px 5px;
+}
+.orange {
+  color: orange;
+}
+.jaune {
+  color: yellow;
+}
+.vert {
+  color: green;
+}
+.marron {
+  color: brown;
+}
+.rose  {
+  color: pink;
+}
+.rouge {
+  color: red;
+}
+.bleu {
+  color: blue;
+}
