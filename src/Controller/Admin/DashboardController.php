@@ -9,7 +9,9 @@ use App\Entity\Dinner;
 use App\Entity\Dish;
 use App\Entity\DishType;
 use App\Entity\Lunch;
+use App\Entity\Month;
 use App\Entity\Starter;
+use App\Entity\Week;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -52,6 +54,7 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linkToUrl('Retour au site', 'fas fa-link', '/'),
+            MenuItem::linkToCrud('Semaines', 'fas fa-calendar-day', Week::class),
             MenuItem::linkToCrud('Jours', 'fas fa-calendar-day', Day::class),
             MenuItem::section('Repas'),
                 MenuItem::linkToCrud('Déjeuners', 'fas fa-sun', Lunch::class),

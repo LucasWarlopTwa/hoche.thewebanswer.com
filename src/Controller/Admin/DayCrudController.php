@@ -26,10 +26,12 @@ class DayCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom du jours')->setColumns(6),
-            AssociationField::new('lunchOfTheDay', 'Déjeuner')->setColumns(6),
-            AssociationField::new('dinnerOfTheDay', 'Dinner')->setColumns(6),
-            DateField::new('dateOfService', 'Date')->setColumns(6),
+            TextField::new('name', 'Nom du jours'),
+            DateField::new('dateOfService', 'Date'),
+            AssociationField::new('lunchOfTheDay', 'Déjeuner'),
+            AssociationField::new('dinnerOfTheDay', 'Dinner'),
+            AssociationField::new('week', 'Semaine'),
+
         ];
     }
 }

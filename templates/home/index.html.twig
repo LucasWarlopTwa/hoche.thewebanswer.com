@@ -4,6 +4,9 @@
 
 {% block body %}
     <section>
+        <h2>{{ week.name }}</h2>
+    </section>
+    <section>
         <table>
             <thead>
             <tr>
@@ -13,7 +16,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for day in days %}
+            {% for day in week.days %}
                 <tr>
                     <th>{{ day.name }}</th>
                     <td>

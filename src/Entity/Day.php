@@ -25,6 +25,10 @@ class Day
     #[ORM\ManyToOne(targetEntity: Dinner::class, inversedBy: 'days')]
     private $dinnerOfTheDay;
 
+    #[ORM\ManyToOne(targetEntity: Week::class, inversedBy: 'days')]
+    private $week;
+
+
     public function __toString()
     {
         return $this->name;
@@ -82,4 +86,17 @@ class Day
 
         return $this;
     }
+
+    public function getWeek(): ?Week
+    {
+        return $this->week;
+    }
+
+    public function setWeek(?Week $week): self
+    {
+        $this->week = $week;
+
+        return $this;
+    }
+
 }
