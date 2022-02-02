@@ -132,7 +132,7 @@
                             {% for laitage in day.lunchOfTheDay.laitiers.toArray %}
                                 <span class="{{ laitage.type.slug }}">{{ laitage }}
                                     {% if laitage.category%}
-                                        {% for category in dessert.category.toArray %}
+                                        {% for category in laitage.category.toArray %}
                                             {% if category == 'aucune' %}
                                             {% else %}
                                                 <img src="images/logo/{{ category.icon }}" alt="">
