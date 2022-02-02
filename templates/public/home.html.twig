@@ -8,7 +8,7 @@
         <a href="{{ path('weeks') }}">Voir les semaines</a>
     </section>
     <section class="section-menu">
-        <table>
+        <table class="bordered">
             <thead>
             <tr>
                 <th>Jours</th>
@@ -52,7 +52,7 @@
                         </p>
                         <hr>
                         <p class="dish">
-                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
+                            {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
                                 <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
                                     {% if accompagnement.category%}
                                         {% for category in accompagnement.category.toArray %}
