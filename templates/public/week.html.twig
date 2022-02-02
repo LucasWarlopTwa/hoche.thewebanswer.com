@@ -53,7 +53,7 @@
                         </p>
                         <hr>
                         <p class="dish">
-                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
+                            {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
                                 <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
                                     {% if accompagnement.category%}
                                         {% for category in accompagnement.category.toArray %}
@@ -130,7 +130,7 @@
                         </p>
                         <hr>
                         <p class="dessert">
-                            {% for laitage in day.lunchOfTheDay.laitiers.toArray %}
+                            {% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
                                 <span class="{{ laitage.type.slug }}">{{ laitage }}
                                     {% if laitage.category%}
                                         {% for category in laitage.category.toArray %}
