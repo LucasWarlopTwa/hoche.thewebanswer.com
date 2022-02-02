@@ -9,7 +9,7 @@
         <a href="{{ path('admin') }}">Administration</a>
     </section>
     <section class="section-menu">
-        <table class="bordered">
+        <table>
             <thead>
             <tr>
                 <th>Jours</th>
@@ -53,7 +53,7 @@
                         </p>
                         <hr>
                         <p class="dish">
-                            {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
+                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
                                 <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
                                     {% if accompagnement.category%}
                                         {% for category in accompagnement.category.toArray %}

@@ -6,16 +6,13 @@
   text-align: center;
   margin-bottom: 20px;
 }
-
 table {
   text-align: center;
   align-items: center;
   th, td {
     border: black solid 2px;
+    border-radius: 10px;
     padding: 20px;
-  }
-  td {
-    padding: 10px;
   }
   tr {
     align-items: center;
@@ -51,7 +48,7 @@ span {
   color: orange;
 }
 .jaune {
-  color: #FFE733;
+  color: yellow;
 }
 .vert {
   color: green;
