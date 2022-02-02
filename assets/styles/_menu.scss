@@ -9,7 +9,6 @@
 table {
   text-align: center;
   align-items: center;
-  font-weight: 500;
   width: 100%;
   border-collapse: separate !important;
   border-spacing: 0;
@@ -32,12 +31,14 @@ table {
 }
 td {
   width: 50%;
+  font-weight: 500;
 }
 hr {
   border: none;
   border-top: 1px solid #ccc;
   color: #333;
   width: 50px;
+  height: 1px;
   overflow: visible;
   text-align: center;
 }
@@ -50,7 +51,7 @@ span {
   color: orange;
 }
 .jaune {
-  color: #f1f138;
+  color: yellow;
 }
 .vert {
   color: green;

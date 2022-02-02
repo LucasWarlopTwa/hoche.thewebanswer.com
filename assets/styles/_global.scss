@@ -34,9 +34,6 @@ header {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
-  -webkit-box-shadow: 0 0 17px 1.5px #ddd;
-  -moz-box-shadow: 0 0 17px 1.5px #ddd;
-  box-shadow: 0 0 17px 1.5px #ddd;
 }
 .bordered tr:hover {
   background: rgba(0, 0, 0, 0.1);
@@ -51,7 +48,6 @@ header {
   text-align: center;
 }
 .bordered th {
-
   -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
   -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;
   box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;
