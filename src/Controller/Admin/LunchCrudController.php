@@ -29,6 +29,8 @@ class LunchCrudController extends AbstractCrudController
             AssociationField::new('starters', 'Entrées')->setColumns(6),
             AssociationField::new('dishes', 'Plats')->setColumns(6),
             AssociationField::new('desserts', 'Desserts')->setColumns(6),
+            AssociationField::new('accompagnements', 'Accompagnements')->setColumns(6),
+            AssociationField::new('laitiers', 'Laitages')->setColumns(6),
         ];
     }
 }

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Semaines{% endblock %}
+
+{% block body %}
+    <section class="section-header">
+        <h2>Les semaines</h2>
+    </section>
+    <section>
+        {% for week in weeks %}
+            <a href="{{ path('week', {'slug': week.slug}) }}" >{{ week.name }}</a>
+        {% endfor %}
+    </section>
+{% endblock %}

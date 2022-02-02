@@ -36,8 +36,16 @@ class DishType
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Dessert::class)]
     private $desserts;
 
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Accompagnement::class)]
+    private $accompagnements;
+
+    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Laitier::class)]
+    private $laitiers;
+
     #[ORM\Column(type: 'string', length: 255)]
     private $slug;
+
+
 
     public function __toString()
     {
@@ -50,6 +58,8 @@ class DishType
         $this->starters = new ArrayCollection();
         $this->dishesbytype = new ArrayCollection();
         $this->desserts = new ArrayCollection();
+        $this->accompagnements = new ArrayCollection();
+        $this->laitiers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +231,66 @@ class DishType
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Accompagnement[]
+     */
+    public function getAccompagnements(): Collection
+    {
+        return $this->accompagnements;
+    }
+
+    public function addAccompagnement(Accompagnement $accompagnement): self
+    {
+        if (!$this->accompagnements->contains($accompagnement)) {
+            $this->accompagnements[] = $accompagnement;
+            $accompagnement->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccompagnement(Accompagnement $accompagnement): self
+    {
+        if ($this->accompagnements->removeElement($accompagnement)) {
+            // set the owning side to null (unless already changed)
+            if ($accompagnement->getType() === $this) {
+                $accompagnement->setType(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Laitier[]
+     */
+    public function getLaitiers(): Collection
+    {
+        return $this->laitiers;
+    }
+
+    public function addLaitier(Laitier $laitier): self
+    {
+        if (!$this->laitiers->contains($laitier)) {
+            $this->laitiers[] = $laitier;
+            $laitier->setType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaitier(Laitier $laitier): self
+    {
+        if ($this->laitiers->removeElement($laitier)) {
+            // set the owning side to null (unless already changed)
+            if ($laitier->getType() === $this) {
+                $laitier->setType(null);
+            }
+        }
 
         return $this;
     }

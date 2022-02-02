@@ -33,6 +33,13 @@ class Category
     #[ORM\ManyToMany(targetEntity: Dessert::class, mappedBy: 'category')]
     private $desserts;
 
+    #[ORM\ManyToMany(targetEntity: Accompagnement::class, mappedBy: 'category')]
+    private $accompagnements;
+
+    #[ORM\ManyToMany(targetEntity: Laitier::class, mappedBy: 'category')]
+    private $laitiers;
+
+
     public function __toString()
     {
         return $this->name;
@@ -43,6 +50,8 @@ class Category
         $this->starters = new ArrayCollection();
         $this->dishes = new ArrayCollection();
         $this->desserts = new ArrayCollection();
+        $this->accompagnements = new ArrayCollection();
+        $this->laitiers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -162,6 +171,60 @@ class Category
     {
         if ($this->desserts->removeElement($dessert)) {
             $dessert->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Accompagnement[]
+     */
+    public function getAccompagnements(): Collection
+    {
+        return $this->accompagnements;
+    }
+
+    public function addAccompagnement(Accompagnement $accompagnement): self
+    {
+        if (!$this->accompagnements->contains($accompagnement)) {
+            $this->accompagnements[] = $accompagnement;
+            $accompagnement->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccompagnement(Accompagnement $accompagnement): self
+    {
+        if ($this->accompagnements->removeElement($accompagnement)) {
+            $accompagnement->removeCategory($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Laitier[]
+     */
+    public function getLaitiers(): Collection
+    {
+        return $this->laitiers;
+    }
+
+    public function addLaitier(Laitier $laitier): self
+    {
+        if (!$this->laitiers->contains($laitier)) {
+            $this->laitiers[] = $laitier;
+            $laitier->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLaitier(Laitier $laitier): self
+    {
+        if ($this->laitiers->removeElement($laitier)) {
+            $laitier->removeCategory($this);
         }
 
         return $this;

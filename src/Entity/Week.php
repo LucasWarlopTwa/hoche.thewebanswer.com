@@ -24,6 +24,9 @@ class Week
     #[ORM\OneToMany(mappedBy: 'week', targetEntity: Day::class)]
     private $days;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $slug;
+
     public function __toString()
     {
         return $this->name;
@@ -89,6 +92,18 @@ class Week
                 $day->setWeek(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

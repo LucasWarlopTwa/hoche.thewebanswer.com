@@ -5,6 +5,7 @@
 {% block body %}
     <section class="section-header">
         <h2>{{ week.name }}</h2>
+        <a href="{{ path('weeks') }}">Voir les semaines</a>
     </section>
     <section class="section-menu">
         <table>
@@ -40,6 +41,36 @@
                                 <span class="{{ dish.type.slug }}">{{ dish }}
                                     {% if dish.category%}
                                         {% for category in dish.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
+                        <hr>
+                        <p class="dish">
+                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
+                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
+                                    {% if accompagnement.category%}
+                                        {% for category in accompagnement.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
+                        <hr>
+                        <p class="dessert">
+                            {% for laitage in day.lunchOfTheDay.laitiers.toArray %}
+                                <span class="{{ laitage.type.slug }}">{{ laitage }}
+                                    {% if laitage.category%}
+                                        {% for category in laitage.category.toArray %}
                                             {% if category == 'aucune' %}
                                             {% else %}
                                                 <img src="images/logo/{{ category.icon }}" alt="">
@@ -97,6 +128,36 @@
                             {% endfor %}
                         </p>
                         <hr>
+                        <p class="dish">
+                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
+                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
+                                    {% if accompagnement.category%}
+                                        {% for category in accompagnement.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
+                        <hr>
+                        <p class="dish">
+                            {% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
+                                <span class="{{ laitage.type.slug }}">{{ laitage }}
+                                    {% if laitage.category%}
+                                        {% for category in laitage.category.toArray %}
+                                            {% if category == 'aucune' %}
+                                            {% else %}
+                                                <img src="images/logo/{{ category.icon }}" alt="">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+                            </span>
+                            {% endfor %}
+                        </p>
+                        <hr>
                         <p class="dessert">
                             {% for dessert in day.dinnerOfTheDay.desserts.toArray %}
                                 <span class="{{ dessert.type.slug }}">{{ dessert }}
@@ -130,7 +191,7 @@
         <h3>Logos</h3>
         <div>
             {% for category in categories %}
-                <span><img src="images/logo/{{ category.icon }}" alt=""> : {{ category.name }}</span>
+                <span><img src="{{ asset('images/logo/' ~ category.icon) }}" alt="logo"> : {{ category.name }}</span>
             {% endfor %}
         </div>
     </aside>
