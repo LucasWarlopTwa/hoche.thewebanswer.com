@@ -48,6 +48,14 @@ header {
   .noPrint{
     display:none;
   }
+  .legends {
+    padding: 20px 0;
+    aside {
+      img {
+        width: 10px;
+      }
+    }
+  }
 }
 
 .logos {

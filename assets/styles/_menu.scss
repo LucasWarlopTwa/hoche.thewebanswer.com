@@ -29,6 +29,18 @@ table {
     }
   }
 }
+@media print {
+  table {
+    .starter, .dish , .dessert {
+      img {
+        margin-left: 5px;
+        width: 10px;
+        align-items: baseline;
+      }
+      text-align: center;
+    }
+  }
+}
 td {
   width: 50%;
   font-weight: 500;
