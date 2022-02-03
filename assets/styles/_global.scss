@@ -28,7 +28,9 @@ header {
     }
   }
 }
-
+.display {
+  display: none;
+}
 @media print {
   header {
     padding: 0;
@@ -48,6 +50,9 @@ header {
   .noPrint{
     display:none;
   }
+  .display {
+    display: block;
+  }
   .legends {
     text-align: center;
     padding: 10px 0;
@@ -64,7 +69,6 @@ header {
     justify-content: space-evenly;
   }
 }
-
 .logos {
   display: flex;
   flex-wrap: wrap;
