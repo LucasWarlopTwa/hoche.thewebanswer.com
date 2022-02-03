@@ -5,8 +5,11 @@
 {% block body %}
     <section class="section-header">
         <h2>{{ week.name }}</h2>
-        <a href="{{ path('weeks') }}">Voir les semaines</a>
-        <a href="{{ path('admin') }}">Administration</a>
+        <a class="noPrint" href="{{ path('weeks') }}">Voir les semaines</a>
+        <a class="noPrint" href="{{ path('admin') }}">Administration</a>
+        <button onclick="window.print();" class="noPrint">
+            Imprimer
+        </button>
     </section>
     <section class="section-menu">
         <table class="bordered">

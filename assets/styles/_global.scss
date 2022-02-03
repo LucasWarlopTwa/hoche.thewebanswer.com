@@ -28,6 +28,28 @@ header {
     }
   }
 }
+
+@media print {
+  header {
+    padding: 0;
+    img {
+      width: 30px;
+      margin-right: 5px;
+    }
+  }
+  h1 {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  body {
+    font-size: 10px;
+    padding: 0 10px;
+  }
+  .noPrint{
+    display:none;
+  }
+}
+
 .logos {
   display: flex;
   flex-wrap: wrap;
