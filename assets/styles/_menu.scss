@@ -30,6 +30,9 @@ table {
   }
 }
 @media print {
+  p span {
+    margin: 2px;
+  }
   hr {
     display: none;
   }
@@ -49,6 +52,7 @@ td {
   font-weight: 500;
   border-bottom:solid 1px black;
 }
+
 th {
   border-bottom:solid 1px black;
 }
