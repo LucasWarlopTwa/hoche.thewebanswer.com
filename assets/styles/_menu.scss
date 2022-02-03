@@ -30,6 +30,9 @@ table {
   }
 }
 @media print {
+  hr {
+    display: none;
+  }
   table {
     .starter, .dish , .dessert {
       img {
