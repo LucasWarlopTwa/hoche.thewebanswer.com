@@ -31,7 +31,10 @@ table {
 }
 @media print {
   p span {
-    margin: 2px;
+    margin: 6px;
+  }
+  hr {
+    display: none;
   }
   table {
     .starter, .dish , .dessert {
