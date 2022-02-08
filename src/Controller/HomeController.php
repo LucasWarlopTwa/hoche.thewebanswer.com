@@ -37,6 +37,11 @@ class HomeController extends AbstractController
 
         ]);
     }
+    #[Route('/bientôt', name: 'soon')]
+    public function soon(): Response
+    {
+        return $this->render('public/soon.html.twig');
+    }
 
     #[Route('/actual/lunch', name: 'actual_lunch')]
     public function actualLunch(): Response

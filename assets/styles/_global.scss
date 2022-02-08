@@ -1,6 +1,9 @@
 html {
   box-sizing: border-box;
 }
+footer {
+  display: none;
+}
 body {
   background-color: white;
   padding: 0 100px;
@@ -21,47 +24,7 @@ h1 {
     }
   }
 }
-.display {
-  display: none;
-}
-@media print {
-  header {
-    padding: 0;
-    img {
-      width: 30px;
-      margin-right: 5px;
-    }
-  }
-  h1 {
-    font-size: 1.2rem;
-    font-weight: 400;
-  }
-  body {
-    font-size: 12px;
-    padding: 0 10px;
-  }
-  .noPrint{
-    display:none;
-  }
-  .display {
-    display: block;
-  }
-  .legends {
-    text-align: center;
-    padding: 10px 0;
-    aside {
-      width: 100%;
-      img {
-        width: 20px;
-      }
-    }
-  }
-  .couleurs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-  }
-}
+
 .logos {
   display: flex;
   flex-wrap: wrap;
