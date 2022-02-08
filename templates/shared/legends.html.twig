@@ -1,0 +1,18 @@
+<section class="legends">
+    <aside>
+        <h3>Code Couleur</h3>
+        <div class="couleurs">
+            {% for type in types %}
+                <p class="{{ type.slug }}">{{ type.codeCouleur }} : {{ type.description }}</p>
+            {% endfor %}
+        </div>
+    </aside>
+    <aside class="noPrint">
+        <h3>Logos</h3>
+        <div class="logos">
+            {% for category in categories %}
+                <span><img src="{{ asset('images/logo/' ~ category.icon) }}" alt="logo"> : {{ category.name }}</span>
+            {% endfor %}
+        </div>
+    </aside>
+</section>

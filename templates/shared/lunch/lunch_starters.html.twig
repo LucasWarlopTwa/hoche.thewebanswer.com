@@ -1,0 +1,12 @@
+{% for starter in day.lunchOfTheDay.starters.toArray %}
+    <span class="{{ starter.type.slug }}">{{ starter }}
+        {% if starter.category%}
+            {% for category in starter.category.toArray %}
+                {% if category == 'aucune' %}
+                {% else %}
+                    <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endfor %}

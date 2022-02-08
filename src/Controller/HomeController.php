@@ -37,4 +37,38 @@ class HomeController extends AbstractController
 
         ]);
     }
+
+    #[Route('/actual/lunch', name: 'actual_lunch')]
+    public function actualLunch(): Response
+    {
+        $week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+        $days = $this->entityManager->getRepository(Day::class)->findAll();
+        $categories = $this->entityManager->getRepository(Category::class)->findAll();
+        $types = $this->entityManager->getRepository(DishType::class)->findAll();
+        return $this->render('public/actual/actual_lunch.html.twig', [
+            'page_title' => 'Déjeuners',
+            'week' => $week,
+            'days' => $days,
+            'categories' => $categories,
+            'types' => $types,
+
+        ]);
+    }
+
+    #[Route('/actual/dinner', name: 'actual_dinner')]
+    public function actualDinner(): Response
+    {
+        $week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+        $days = $this->entityManager->getRepository(Day::class)->findAll();
+        $categories = $this->entityManager->getRepository(Category::class)->findAll();
+        $types = $this->entityManager->getRepository(DishType::class)->findAll();
+        return $this->render('public/actual/actual_dinner.html.twig', [
+            'page_title' => 'Diners',
+            'week' => $week,
+            'days' => $days,
+            'categories' => $categories,
+            'types' => $types,
+
+        ]);
+    }
 }

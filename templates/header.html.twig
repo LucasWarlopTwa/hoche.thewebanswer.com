@@ -1,4 +1,12 @@
 <header>
-    <img src="{{ asset('images/logo/lyceehoche.svg') }}" alt="">
-    <h1>Lycée Hoche <br> Menu de la semaine</h1>
+    <div class="header-introduction">
+        <img src="{{ asset('images/logo/lyceehoche.svg') }}" alt="">
+        <h1>Cité Scolaire Hoche</h1>
+    </div>
+    <div class="header-buttons">
+        <a href="{{ path('home') }}">Accueil</a>
+        <a onclick="window.print();" class="noPrint">
+            Imprimer
+        </a>
+    </div>
 </header>

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <section class="menu-header">
+        <h2>{{ week.name }}</h2>
+        <hr>
+        <h3>{{ page_title }}</h3>
+    </section>
+    <section class="section-menu">
+        <table class="bordered">
+            <thead>
+            <tr>
+                <th>Type</th>
+                {% for day in week.days %}
+                    <th>{{ day.name }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>Entrée</th>
+                {% for day in week.days %}
+                    <td>
+                        <p class="starter">
+                            {% include 'shared/lunch/lunch_starters.html.twig' %}
+                        </p>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Plat Protidique</th>
+                {% for day in week.days %}
+                    <td>
+                        <p class="dish">
+                            {% include 'shared/lunch/lunch_dishes.html.twig' %}
+                        </p>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Accompagnement</th>
+                {% for day in week.days %}
+                    <td>
+                        <p class="dish">
+                            {% include 'shared/lunch/lunch_accompagnements.html.twig' %}
+                        </p>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Laitage</th>
+                {% for day in week.days %}
+                    <td>
+                        <p class="dessert">
+                            {% include 'shared/lunch/lunch_laitages.html.twig' %}
+                        </p>
+                    </td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Dessert</th>
+                {% for day in week.days %}
+                    <td>
+                        <p class="dessert">
+                            {% include 'shared/lunch/lunch_desserts.html.twig' %}
+                        </p>
+                    </td>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </section>
+    {% include 'shared/legends.html.twig' %}
+
+{% endblock %}

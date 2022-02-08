@@ -3,203 +3,54 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <section class="section-header">
-        <h2>{{ week.name }}</h2>
-        <a class="noPrint" href="{{ path('weeks') }}">Voir les semaines</a>
-        <a class="noPrint" href="{{ path('admin') }}">Administration</a>
-        <button onclick="window.print();" class="noPrint">
-            Imprimer
-        </button>
+    <section class="home-header">
+        <h1>Accueil</h1>
     </section>
-    <section class="section-menu">
-        <table class="bordered">
-            <thead>
-            <tr>
-                <th>Jours</th>
-                <th>Déjeuner</th>
-                <th>Dinner</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for day in week.days %}
-                <tr>
-                    <th>{{ day.name }}</th>
-                    <td>
-                        <p class="starter">
-                            {% for starter in day.lunchOfTheDay.starters.toArray %}
-                                <span class="{{ starter.type.slug }}">{{ starter }}
-                                    {% if starter.category%}
-                                        {% for category in starter.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dish">
-                            {% for dish in day.lunchOfTheDay.dishes.toArray %}
-                                <span class="{{ dish.type.slug }}">{{ dish }}
-                                    {% if dish.category%}
-                                        {% for category in dish.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dish">
-                            {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
-                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
-                                    {% if accompagnement.category%}
-                                        {% for category in accompagnement.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for laitage in day.lunchOfTheDay.laitiers.toArray %}
-                                <span class="{{ laitage.type.slug }}">{{ laitage }}
-                                    {% if laitage.category%}
-                                        {% for category in laitage.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for dessert in day.lunchOfTheDay.desserts.toArray %}
-                                <span class="{{ dessert.type.slug }}">{{ dessert }}
-                                    {% if dessert.category%}
-                                        {% for category in dessert.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                    </td>
-                    <td>
-                        <p class="starter">
-                            {% for starter in day.dinnerOfTheDay.starters.toArray %}
-
-                                <span class="{{ starter.type.slug }}">{{ starter }}
-                                    {% if starter.category%}
-                                        {% for category in starter.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dish">
-                            {% for dish in day.dinnerOfTheDay.dishes.toArray %}
-                                <span class="{{ dish.type.slug }}">{{ dish }}
-                                    {% if dish.category%}
-                                        {% for category in dish.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dish">
-                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
-                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
-                                    {% if accompagnement.category%}
-                                        {% for category in accompagnement.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dish">
-                            {% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
-                                <span class="{{ laitage.type.slug }}">{{ laitage }}
-                                    {% if laitage.category%}
-                                        {% for category in laitage.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for dessert in day.dinnerOfTheDay.desserts.toArray %}
-                                <span class="{{ dessert.type.slug }}">{{ dessert }}
-                                    {% if dessert.category%}
-                                        {% for category in dessert.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            </span>
-                            {% endfor %}
-                        </p>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <section>
+        <h2>Semaine en cours</h2>
+        <div class="home-content">
+            <a href="{{ path('actual_lunch') }}">
+                <p>
+                    <i class="fad fa-utensils-alt"></i>
+                    <br>
+                    Déjeuner</p>
+            </a>
+            <a href="{{ path('actual_dinner') }}">
+                <p>
+                    <i class="fad fa-utensils-alt"></i>
+                    <br>
+                    Diner
+                </p>
+            </a>
+            <a href="{{ path('actual_lunch') }}">
+                <p>
+                    <i class="fad fa-print"></i>
+                    <br>
+                    Imprimer
+                </p>
+            </a>
+        </div>
+        <h2>Gestion</h2>
+        <div class="home-content">
+            <a href="{{ path('actual_lunch') }}">
+                <p>
+                    <i class="fad fa-tools"></i>
+                    <br>
+                    Administration
+                </p>
+            </a>
+            <a href="{{ path('weeks') }}">
+                <p>
+                    <i class="fad fa-calendar-week"></i>
+                    <br>
+                    Semaines</p>
+            </a>
+            <a href="{{ path('actual_lunch') }}">
+                <p>
+                    <i class="fad fa-calendar-week"></i>
+                    <br>
+                    Mois</p>
+            </a>
+        </div>
     </section>
-<section class="legends">
-    <aside>
-        <h3>Code Couleur</h3>
-        <div class="couleurs">
-            {% for type in types %}
-                <p class="{{ type.slug }}">{{ type.codeCouleur }} : {{ type.description }}</p>
-            {% endfor %}
-        </div>
-    </aside>
-    <aside class="noPrint">
-        <h3>Logos</h3>
-        <div class="logos">
-            {% for category in categories %}
-                <span><img src="{{ asset('images/logo/' ~ category.icon) }}" alt="logo"> : {{ category.name }}</span>
-            {% endfor %}
-        </div>
-    </aside>
-
-</section>
-
 {% endblock %}

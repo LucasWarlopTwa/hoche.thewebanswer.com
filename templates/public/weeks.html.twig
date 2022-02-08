@@ -3,12 +3,14 @@
 {% block title %}Semaines{% endblock %}
 
 {% block body %}
-    <section class="section-header">
-        <h2>Les semaines</h2>
+    <section class="menu-header">
+        <h3>{{ page_title }}</h3>
     </section>
-    <section>
+    <section class="weeks-content">
         {% for week in weeks %}
-            <a href="{{ path('week', {'slug': week.slug}) }}" >{{ week.name }}</a>
+            <div class="weeks-link">
+                <a href="{{ path('week', {'slug': week.slug}) }}" >{{ week.name }}</a> <div><a href="">Déjeuner</a> | <a href="">Diner</a></div>
+            </div>
         {% endfor %}
     </section>
 {% endblock %}

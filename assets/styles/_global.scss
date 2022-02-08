@@ -1,3 +1,6 @@
+html {
+  box-sizing: border-box;
+}
 body {
   background-color: white;
   padding: 0 200px;
@@ -6,16 +9,6 @@ body {
 h1 {
   font-size: 3.4rem;
   font-weight: 400;
-}
-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  img {
-    width: 110px;
-    margin-right: 10px;
-  }
-  padding: 20px 0;
 }
 .legends {
   padding: 50px 0;

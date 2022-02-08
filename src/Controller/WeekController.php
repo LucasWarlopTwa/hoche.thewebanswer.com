@@ -24,6 +24,7 @@ class WeekController extends AbstractController
     {
         $weeks = $this->entityManager->getRepository(Week::class)->findAll();
         return $this->render('public/weeks.html.twig', [
+            'page_title' => 'Semaines',
             'weeks' => $weeks,
         ]);
     }

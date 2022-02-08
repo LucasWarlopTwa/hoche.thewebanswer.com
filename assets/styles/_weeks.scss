@@ -1,0 +1,19 @@
+.weeks-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  .weeks-link {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: solid grey 2px;
+    display: flex;
+    justify-content: space-between;
+    a {
+      &:hover {
+        font-weight: bold;
+      }
+    }
+  }
+
+}

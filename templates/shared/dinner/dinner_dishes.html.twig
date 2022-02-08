@@ -1,0 +1,12 @@
+{% for dish in day.dinnerOfTheDay.dishes.toArray %}
+    <span class="{{ dish.type.slug }}">{{ dish }}
+        {% if dish.category%}
+            {% for category in dish.category.toArray %}
+                {% if category == 'aucune' %}
+                {% else %}
+                    <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endfor %}

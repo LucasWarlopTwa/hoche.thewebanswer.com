@@ -1,0 +1,12 @@
+{% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
+    <span class="{{ laitage.type.slug }}">{{ laitage }}
+        {% if laitage.category%}
+            {% for category in laitage.category.toArray %}
+                {% if category == 'aucune' %}
+                {% else %}
+                    <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endfor %}

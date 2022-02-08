@@ -1,0 +1,12 @@
+{% for dessert in day.lunchOfTheDay.desserts.toArray %}
+    <span class="{{ dessert.type.slug }}">{{ dessert }}
+        {% if dessert.category%}
+            {% for category in dessert.category.toArray %}
+                {% if category == 'aucune' %}
+                {% else %}
+                    <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+{% endfor %}
