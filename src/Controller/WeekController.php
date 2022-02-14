@@ -26,6 +26,7 @@ class WeekController extends AbstractController
         return $this->render('public/weeks.html.twig', [
             'page_title' => 'Semaines',
             'weeks' => $weeks,
+            'week' => true,
         ]);
     }
 

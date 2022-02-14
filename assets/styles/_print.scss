@@ -6,9 +6,6 @@
   header {
     margin: 0;
     .header-introduction {
-      position: absolute;
-      top: 0;
-      left: 0;
       padding: 0;
       margin: 0;
       img {
@@ -25,10 +22,11 @@
   }
   table{
     th {
-      font-size: 10px;
+      font-size: 14px;
     }
     td {
-      font-size: 14px;
+      font-size: 12px;
+      font-family: 'Cormorant Garamond', serif !important;
     }
     td,th {
       padding: 0;
@@ -47,13 +45,14 @@
       display: none;
     }
     h2 {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 20px;
+      margin-bottom: 40px;
+      font-size: 15px;
       text-transform: uppercase;
     }
     h3 {
+      position: absolute;
+      top: 0;
+      left: 0;
       font-size: 20px;
       margin-bottom: 50px;
     }
@@ -86,10 +85,10 @@
     }
   }
   footer {
+    margin-top: 50px;
     display: initial;
     text-align: center;
     width: 100%;
-    position: absolute;
     bottom: 10px;
     h3 {
       font-size: 12px;
@@ -102,11 +101,12 @@
         font-size: 12px;
       }
       p {
+        margin-top: 10px;
         font-size: 12px;
       }
-      margin-top: 10px;
+      margin-top: 50px;
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
     }
   }
 }
