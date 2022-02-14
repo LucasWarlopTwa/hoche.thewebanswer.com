@@ -22,10 +22,11 @@
   }
   table{
     th {
-      font-size: 14px;
+      font-size: 12px;
     }
     td {
-      font-size: 12px;
+      font-size: 14px;
+      font-weight: bold;
       font-family: 'Cormorant Garamond', serif !important;
     }
     td,th {
@@ -53,7 +54,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      font-size: 20px;
+      font-size: 16px;
       margin-bottom: 50px;
     }
     padding: 0;
