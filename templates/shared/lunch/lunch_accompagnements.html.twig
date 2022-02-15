@@ -1,5 +1,6 @@
 {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
-    <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
+    <span class="{{ accompagnement.type.slug }}">
+        {{ accompagnement }}
         {% if accompagnement.category%}
             {% for category in accompagnement.category.toArray %}
                 {% if category == 'aucune' %}
@@ -8,5 +9,6 @@
                 {% endif %}
             {% endfor %}
         {% endif %}
+        <br>
     </span>
 {% endfor %}
