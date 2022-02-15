@@ -1,6 +1,6 @@
 {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
     <span class="{{ accompagnement.type.slug }}">
-        {{ accompagnement }} <p>TEST</p>
+        {{ accompagnement }}
         {% if accompagnement.category%}
             {% for category in accompagnement.category.toArray %}
                 {% if category == 'aucune' %}
