@@ -1,9 +1,9 @@
 {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
-    <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
+    <span class="{{ accompagnement.type.slug }}">
+        {{ accompagnement }} <p>TEST</p>
         {% if accompagnement.category%}
             {% for category in accompagnement.category.toArray %}
                 {% if category == 'aucune' %}
-                    <span>TEST</span>
                 {% else %}
                     <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
                 {% endif %}
