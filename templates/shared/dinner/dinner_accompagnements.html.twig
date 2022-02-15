@@ -3,11 +3,11 @@
         {% if accompagnement.category%}
             {% for category in accompagnement.category.toArray %}
                 {% if category == 'aucune' %}
+                    <span>TEST</span>
                 {% else %}
                     <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
                 {% endif %}
             {% endfor %}
         {% endif %}
     </span>
-    <hr>
 {% endfor %}
