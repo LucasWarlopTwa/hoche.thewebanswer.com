@@ -3,10 +3,10 @@
 {% block title %}Semaines{% endblock %}
 
 {% block body %}
-    <section class="section-header">
+    <section class="menu-header portrait-header">
         <h2>{{ week.name }}</h2>
     </section>
-    <section class="section-menu">
+    <section class="menu-content portrait">
         <table class="bordered">
             <thead>
             <tr>
@@ -177,7 +177,7 @@
             </tbody>
         </table>
     </section>
-    <section class="legends">
+    <section class="legends noPrint">
         <aside>
             <h3>Code Couleur</h3>
             <div>
@@ -194,6 +194,5 @@
                 {% endfor %}
             </div>
         </aside>
-
     </section>
 {% endblock %}

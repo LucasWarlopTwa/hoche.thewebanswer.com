@@ -1,0 +1,26 @@
+.noPrint {
+  @media print {
+    display: none;
+  }
+}
+.portrait {
+  @media print {
+    td, th {
+      font-size: 12px;
+      span {
+        display: inline-flex;
+        img {
+         width: 12px;
+        }
+      }
+    }
+  }
+}
+.portrait-header {
+  @media print {
+    h2 {
+      font-size: 12px;
+    }
+  }
+}
+
