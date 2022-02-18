@@ -9,6 +9,9 @@
       font-size: 12px;
       span {
         display: inline-flex;
+        &:not(:last-child):after {
+         content: "|";
+        }
         img {
          width: 12px;
         }
