@@ -1,5 +1,5 @@
 {% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
-    <span class="{{ laitage.type.slug }}">{{ laitage }}
+    <span style="color:{{ laitage.type.codeCouleur }} !important;">{{ laitage }}
         {% if laitage.category%}
             {% for category in laitage.category.toArray %}
                 {% if category == 'aucune' %}

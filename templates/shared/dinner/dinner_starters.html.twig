@@ -1,5 +1,5 @@
 {% for starter in day.dinnerOfTheDay.starters.toArray %}
-    <span class="{{ starter.type.slug }}">{{ starter }}
+    <span style="color:{{ starter.type.codeCouleur }} !important;">{{ starter }}
         {% if starter.category%}
             {% for category in starter.category.toArray %}
                 {% if category == 'aucune' %}

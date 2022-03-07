@@ -1,5 +1,5 @@
 {% for dish in day.dinnerOfTheDay.dishes.toArray %}
-    <span class="{{ dish.type.slug }}">{{ dish }}
+    <span style="color:{{ dish.type.codeCouleur }} !important;">{{ dish }}
         {% if dish.category%}
             {% for category in dish.category.toArray %}
                 {% if category == 'aucune' %}

@@ -1,5 +1,5 @@
 {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
-    <span class="{{ accompagnement.type.slug }}">
+    <span style="color:{{ accompagnement.type.codeCouleur }} !important;">
         {{ accompagnement }}
         {% if accompagnement.category%}
             {% for category in accompagnement.category.toArray %}

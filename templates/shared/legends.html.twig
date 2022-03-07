@@ -3,7 +3,7 @@
         <h3>Code Couleur</h3>
         <div class="couleurs">
             {% for type in types %}
-                <p class="{{ type.slug }}">{{ type.codeCouleur }} : {{ type.description }}</p>
+                <p style="color:{{ type.codeCouleur }};"> {{ type.description|capitalize }}</p>
             {% endfor %}
         </div>
     </aside>

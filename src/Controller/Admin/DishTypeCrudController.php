@@ -28,7 +28,7 @@ class DishTypeCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name', 'Nom du type')->setColumns(6),
-            TextField::new('codeCouleur', 'Code Couleur')->setColumns(6),
+            ColorField::new('codeCouleur', 'Code Couleur')->setColumns(6),
             TextareaField::new('description', 'Description')->setColumns(6),
             SlugField::new('slug', 'Slug')->setTargetFieldName('codeCouleur')->setColumns(6),
         ];
