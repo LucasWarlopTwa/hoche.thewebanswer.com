@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\DayRepository;
 use Doctrine\ORM\Mapping as ORM;
+use IntlDateFormatter;
 
 #[ORM\Entity(repositoryClass: DayRepository::class)]
 class Day
@@ -12,9 +13,6 @@ class Day
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
 
     #[ORM\Column(type: 'date')]
     private $dateOfService;
@@ -31,26 +29,23 @@ class Day
 
     public function __toString()
     {
-        return $this->name;
+        setlocale(LC_TIME, 'fr_FR');
+        date_default_timezone_set('Europe/Paris');
+        $fmt = new IntlDateFormatter(
+            'fr_FR',
+            IntlDateFormatter::FULL,
+            IntlDateFormatter::FULL,
+            'Europe/Paris',
+            IntlDateFormatter::GREGORIAN,
+            'EEEE'
+        );
+        return  $fmt->format($this->dateOfService);
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
     public function getDateOfService(): ?\DateTimeInterface
     {
         return $this->dateOfService;
@@ -94,9 +89,11 @@ class Day
 
     public function setWeek(?Week $week): self
     {
+
         $this->week = $week;
 
         return $this;
     }
+
 
 }

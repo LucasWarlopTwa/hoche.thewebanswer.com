@@ -6,6 +6,7 @@ use App\Entity\Dinner;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class DinnerCrudController extends AbstractCrudController
@@ -20,11 +21,13 @@ class DinnerCrudController extends AbstractCrudController
             // the labels used to refer to this entity in titles, buttons, etc.
             ->setEntityLabelInSingular('Diner')
             ->setEntityLabelInPlural('Diners')
+            ->setPaginatorPageSize(10)
             ;
     }
     public function configureFields(string $pageName): iterable
     {
         return [
+            FormField::addPanel('User Details'),
             TextField::new('name', 'Nom du Dinner')->setColumns(6),
             AssociationField::new('starters', 'Entrées')->setColumns(6),
             AssociationField::new('dishes', 'Plats')->setColumns(6),
