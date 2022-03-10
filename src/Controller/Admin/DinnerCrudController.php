@@ -27,13 +27,12 @@ class DinnerCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            FormField::addPanel('User Details'),
-            TextField::new('name', 'Nom du Dinner')->setColumns(6),
-            AssociationField::new('starters', 'Entrées')->setColumns(6),
-            AssociationField::new('dishes', 'Plats')->setColumns(6),
-            AssociationField::new('desserts', 'Desserts')->setColumns(6),
-            AssociationField::new('accompagnements', 'Accompagnements')->setColumns(6),
-            AssociationField::new('laitiers', 'Laitages')->setColumns(6),
+            TextField::new('name', 'Nom du Diner'),
+            AssociationField::new('starters', 'Entrées'),
+            AssociationField::new('dishes', 'Plats'),
+            AssociationField::new('desserts', 'Desserts'),
+            AssociationField::new('accompagnements', 'Accompagnements'),
+            AssociationField::new('laitiers', 'Laitages'),
         ];
     }
 }
