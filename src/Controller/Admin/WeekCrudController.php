@@ -25,7 +25,7 @@ class WeekCrudController extends AbstractCrudController
             TextField::new('name', 'Nom de la semaine'),
             BooleanField::new('actual', 'En ce moment'),
             SlugField::new('slug', 'Slug')->setTargetFieldName('name')->hideOnIndex(),
-            CollectionField::new('days', 'Jours')->setEntryIsComplex(true)->setEntryType(DayType::class),
+            CollectionField::new('days', 'Jours')->setEntryIsComplex(false)->setEntryType(DayType::class),
         ];
     }
 }
