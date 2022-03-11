@@ -30,8 +30,8 @@ class DinnerCrudController extends AbstractCrudController
             TextField::new('name', 'Nom du Diner'),
             AssociationField::new('starters', 'Entrées'),
             AssociationField::new('dishes', 'Plats'),
-            AssociationField::new('desserts', 'Desserts'),
             AssociationField::new('accompagnements', 'Accompagnements'),
+            AssociationField::new('desserts', 'Desserts'),
             AssociationField::new('laitiers', 'Laitages'),
         ];
     }
