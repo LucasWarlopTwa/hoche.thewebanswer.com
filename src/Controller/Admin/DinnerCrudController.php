@@ -31,8 +31,8 @@ class DinnerCrudController extends AbstractCrudController
             AssociationField::new('starters', 'Entrées'),
             AssociationField::new('dishes', 'Plats'),
             AssociationField::new('accompagnements', 'Accompagnements'),
-            AssociationField::new('desserts', 'Desserts'),
             AssociationField::new('laitiers', 'Laitages'),
+            AssociationField::new('desserts', 'Desserts'),
         ];
     }
 }

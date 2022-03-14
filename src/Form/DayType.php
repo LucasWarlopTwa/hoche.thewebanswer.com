@@ -23,9 +23,25 @@ class DayType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateOfService')
-            ->add('lunchOfTheDay')
-            ->add('dinnerOfTheDay')
+            ->add('dateOfService', DateType::class, [
+                'widget' => 'single_text',
+                'input'  => 'datetime',
+                'label' => "Date",
+                'required' => true,
+
+            ])
+            ->add('lunchOfTheDay',EntityType::class, [
+                'label' => "Déjeuner",
+                'required' => true,
+                'class' => Lunch::class,
+                'choice_label' => 'name',
+            ])
+            ->add('dinnerOfTheDay', EntityType::class, [
+                'label' => "Diner",
+                'required' => true,
+                'class' => Dinner::class,
+                'choice_label' => 'name',
+            ])
 
         ;
     }
