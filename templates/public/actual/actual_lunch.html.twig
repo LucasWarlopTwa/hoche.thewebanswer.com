@@ -4,7 +4,7 @@
 
 {% block body %}
     <section class="menu-header">
-        <h2>{{ week.name }}</h2>
+        <h2>Déjeuner pour la semaine</h2>
         <hr>
         <h3>{{ page_title }}</h3>
     </section>
@@ -13,7 +13,7 @@
             <thead>
             <tr>
                 <th>Type</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <th>
                         {% set trans_day_hash = {
                             "Monday": "Lundi",
@@ -33,7 +33,7 @@
             <tbody>
             <tr>
                 <th>Entrée</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <td>
                         <p class="starter">
                             {% include 'shared/lunch/lunch_starters.html.twig' %}
@@ -43,7 +43,7 @@
             </tr>
             <tr>
                 <th>Plat Protidique</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <td>
                         <p class="dish">
                             {% include 'shared/lunch/lunch_dishes.html.twig' %}
@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <th>Accompagnement</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <td>
                         <p class="dish">
                             {% include 'shared/lunch/lunch_accompagnements.html.twig' %}
@@ -63,7 +63,7 @@
             </tr>
             <tr>
                 <th>Laitage</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <td>
                         <p class="dessert">
                             {% include 'shared/lunch/lunch_laitages.html.twig' %}
@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <th>Dessert</th>
-                {% for day in week.days %}
+                {% for day in week %}
                     <td>
                         <p class="dessert">
                             {% include 'shared/lunch/lunch_desserts.html.twig' %}

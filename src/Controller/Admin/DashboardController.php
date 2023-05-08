@@ -56,7 +56,7 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linkToUrl('Retour au site', 'fas fa-link', '/'),
-            MenuItem::linkToCrud('Semaines', 'fas fa-calendar-day', Week::class),
+            MenuItem::linkToCrud('Jours', 'fas fa-calendar-day', Day::class),
             //MenuItem::linkToCrud('Jours', 'fas fa-calendar-day', Day::class),
             MenuItem::section('Repas'),
                 MenuItem::linkToCrud('Déjeuners', 'fas fa-sun', Lunch::class),

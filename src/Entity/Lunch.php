@@ -15,9 +15,6 @@ class Lunch
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $name;
-
     #[ORM\OneToMany(mappedBy: 'lunchOfTheDay', targetEntity: Day::class)]
     private $days;
 
@@ -40,7 +37,7 @@ class Lunch
 
     public function __toString()
     {
-        return $this->name;
+        return "Déjeuner";
     }
 
     public function __construct()
@@ -56,18 +53,6 @@ class Lunch
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
     }
 
     /**

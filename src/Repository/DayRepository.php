@@ -36,6 +36,22 @@ class DayRepository extends ServiceEntityRepository
     }
     */
 
+	public function findDaysOfWeek(): array
+	{
+		$currentDate = new \DateTimeImmutable('now');
+		$monday = $currentDate->modify('monday this week');
+		$sunday = $currentDate->modify('sunday this week');
+
+		$qb = $this->createQueryBuilder('d')
+			->where('d.dateOfService >= :monday')
+			->andWhere('d.dateOfService <= :sunday')
+			->setParameter('monday', $monday)
+			->setParameter('sunday', $sunday)
+			->orderBy('d.dateOfService', 'ASC');
+
+		return $qb->getQuery()->getResult();
+	}
+
     /*
     public function findOneBySomeField($value): ?Day
     {

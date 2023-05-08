@@ -37,7 +37,6 @@ class DayCrudController extends AbstractCrudController
             //FormField::addPanel()->setProperty('dinnerOfTheDay')->setFormType(DinnerType::class),
             AssociationField::new('lunchOfTheDay', 'Déjeuner'),
             AssociationField::new('dinnerOfTheDay', 'Dinner'),
-            AssociationField::new('week', 'Semaine')->hideOnIndex(),
         ];
     }
 }

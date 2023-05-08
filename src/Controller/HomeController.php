@@ -8,6 +8,7 @@ use App\Entity\Dinner;
 use App\Entity\DishType;
 use App\Entity\Lunch;
 use App\Entity\Week;
+use App\Repository\DayRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,9 +24,11 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(DayRepository $dayRepository): Response
     {
-        $week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+		$week = $dayRepository->findDaysOfWeek();
+        //$week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+
         $days = $this->entityManager->getRepository(Day::class)->findAll();
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
         $types = $this->entityManager->getRepository(DishType::class)->findAll();
@@ -44,9 +47,9 @@ class HomeController extends AbstractController
     }
 
     #[Route('/actual/lunch', name: 'actual_lunch')]
-    public function actualLunch(): Response
+    public function actualLunch(DayRepository $dayRepository): Response
     {
-        $week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+	    $week = $dayRepository->findDaysOfWeek();
         $days = $this->entityManager->getRepository(Day::class)->findAll();
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
         $types = $this->entityManager->getRepository(DishType::class)->findAll();
@@ -61,9 +64,9 @@ class HomeController extends AbstractController
     }
 
     #[Route('/actual/dinner', name: 'actual_dinner')]
-    public function actualDinner(): Response
+    public function actualDinner(DayRepository $dayRepository): Response
     {
-        $week = $this->entityManager->getRepository(Week::class)->findOneBy(['actual'=>true]);
+	    $week = $dayRepository->findDaysOfWeek();
         $days = $this->entityManager->getRepository(Day::class)->findAll();
         $categories = $this->entityManager->getRepository(Category::class)->findAll();
         $types = $this->entityManager->getRepository(DishType::class)->findAll();

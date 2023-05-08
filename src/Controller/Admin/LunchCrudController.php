@@ -25,7 +25,6 @@ class LunchCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nom du Déjeuner'),
             AssociationField::new('starters', 'Entrées'),
             AssociationField::new('dishes', 'Plats'),
             AssociationField::new('accompagnements', 'Accompagnements'),

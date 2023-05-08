@@ -43,7 +43,7 @@ class SecurityController extends AbstractController
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    #[Route('/admin/inscription', name: 'register')]
+    #[Route('/inscription', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $hasher): Response
     {
         //if ($this->getUser()) {
