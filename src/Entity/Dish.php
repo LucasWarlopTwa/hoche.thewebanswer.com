@@ -27,7 +27,7 @@ class Dish
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'dishes')]
     private $category;
 
-    #[ORM\ManyToOne(targetEntity: DishType::class, inversedBy: 'dishesbytype')]
+    #[ORM\ManyToOne(targetEntity: DishType::class, inversedBy: 'dishes')]
     private $type;
 
     public function __construct()

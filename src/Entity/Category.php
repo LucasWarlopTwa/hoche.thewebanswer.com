@@ -6,8 +6,11 @@ use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[Vich\Uploadable]
 class Category
 {
     #[ORM\Id]
@@ -18,11 +21,8 @@ class Category
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $icon;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $slug;
+    #[ORM\Column(type: 'text', length: 255)]
+    private $description;
 
     #[ORM\ManyToMany(targetEntity: Starter::class, mappedBy: 'category')]
     private $starters;
@@ -38,6 +38,19 @@ class Category
 
     #[ORM\ManyToMany(targetEntity: Laitier::class, mappedBy: 'category')]
     private $laitiers;
+
+	// NOTE: This is not a mapped field of entity metadata, just a simple property.
+	#[Vich\UploadableField(mapping: 'categoryIcons', fileNameProperty: 'imageName', size: 'imageSize')]
+	private ?File $imageFile = null;
+
+	#[ORM\Column(nullable: true)]
+	private ?string $imageName = null;
+
+	#[ORM\Column(nullable: true)]
+	private ?int $imageSize = null;
+
+	#[ORM\Column(nullable: true)]
+	private ?\DateTimeImmutable $updatedAt = null;
 
 
     public function __toString()
@@ -67,30 +80,6 @@ class Category
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getIcon(): ?string
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(string $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }
@@ -229,4 +218,65 @@ class Category
 
         return $this;
     }
+
+	/**
+	 * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+	 * of 'UploadedFile' is injected into this setter to trigger the update. If this
+	 * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+	 * must be able to accept an instance of 'File' as the bundle will inject one here
+	 * during Doctrine hydration.
+	 *
+	 * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+	 */
+	public function setImageFile(?File $imageFile = null): void
+	{
+		$this->imageFile = $imageFile;
+
+		if (null !== $imageFile) {
+			// It is required that at least one field changes if you are using doctrine
+			// otherwise the event listeners won't be called and the file is lost
+			$this->updatedAt = new \DateTimeImmutable();
+		}
+	}
+
+	public function getImageFile(): ?File
+	{
+		return $this->imageFile;
+	}
+
+	public function setImageName(?string $imageName): void
+	{
+		$this->imageName = $imageName;
+	}
+
+	public function getImageName(): ?string
+	{
+		return $this->imageName;
+	}
+
+	public function setImageSize(?int $imageSize): void
+	{
+		$this->imageSize = $imageSize;
+	}
+
+	public function getImageSize(): ?int
+	{
+		return $this->imageSize;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
+	/**
+	 * @param mixed $description
+	 */
+	public function setDescription($description): void
+	{
+		$this->description = $description;
+	}
 }

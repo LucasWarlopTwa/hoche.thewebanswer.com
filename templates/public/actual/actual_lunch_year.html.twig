@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div>
+        {% for week in weeks %}
+            <div>
+                <h2 class="text-lg font-semibold font-display"><a href="{{ path('actual_week', {date: week.start}) }}">Semaine du {{ week.start|format_datetime(locale='fr',pattern="dd MMMM") }} au {{ week.end|format_datetime(locale='fr',pattern="dd MMMM") }}</a></h2>
+                <ul>
+                    {% for day in week.days %}
+                        <li class="list-disc ml-4">
+                            <a href="{{ path('lunch_by_week', {date: day.dateOfService|date('Y-m-d')}) }}" class="text-green-500 font-semibold">{{ day.dateOfService|format_datetime(locale='fr',pattern="EEEE dd")|capitalize }}</a>
+                        </li>
+                    {% else %}
+                        <li>Pas de données pour cette semaine.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

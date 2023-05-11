@@ -2,9 +2,14 @@
 
 {% block title %}Semaines{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('menu') }}
+{% endblock %}
+
 {% block body %}
-    <section class="menu-header portrait-header">
-        <h2>{{ week.name }}</h2>
+    <section class="pt-4">
+        <h2 class="text-lg font-semibold font-display">Semaine du {{ start|format_datetime(locale='fr',pattern="dd MMMM") }} au {{ end|format_datetime(locale='fr',pattern="dd MMMM") }}</h2>
     </section>
     <section class="menu-content portrait">
         <table class="bordered">
@@ -16,160 +21,61 @@
             </tr>
             </thead>
             <tbody>
-            {% for day in week.days %}
+            {% for day in week %}
                 <tr>
-                    <th>{{ day.name }}</th>
-                    <td>
-                        <p class="starter">
-                            {% for starter in day.lunchOfTheDay.starters.toArray %}
-                                <span class="{{ starter.type.slug }}">{{ starter }}
-                                    {% if starter.category%}
-                                        {% for category in starter.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                                &nbsp;</span>
-                            {% endfor %}
+                    <th>{{ day.dateOfService|format_datetime(locale='fr',pattern="dd MMMM") }}</th>
+                    <td class="divide-y-2">
+                        <p class="starter py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.lunch.starters.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dish">
-                            {% for dish in day.lunchOfTheDay.dishes.toArray %}
-                                <span class="{{ dish.type.slug }}">{{ dish }}
-                                    {% if dish.category%}
-                                        {% for category in dish.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.lunch.dishes.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dish">
-                            {% for accompagnement in day.lunchOfTheDay.accompagnements.toArray %}
-                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
-                                    {% if accompagnement.category%}
-                                        {% for category in accompagnement.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.lunch.accompagnements.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dish">
-                            {% for laitage in day.lunchOfTheDay.laitiers.toArray %}
-                                <span class="{{ laitage.type.slug }}">{{ laitage }}
-                                    {% if laitage.category%}
-                                        {% for category in laitage.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.lunch.laitiers.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for dessert in day.lunchOfTheDay.desserts.toArray %}
-                                <span class="{{ dessert.type.slug }}">{{ dessert }}
-                                    {% if dessert.category%}
-                                        {% for category in dessert.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dessert py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.lunch.desserts.toArray
+                            } %}
                         </p>
                     </td>
                     <td>
-                        <p class="starter">
-                            {% for starter in day.dinnerOfTheDay.starters.toArray %}
-
-                                <span class="{{ starter.type.slug }}">{{ starter }}
-                                    {% if starter.category%}
-                                        {% for category in starter.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="starter py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.dinner.starters.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dish">
-                            {% for dish in day.dinnerOfTheDay.dishes.toArray %}
-                                <span class="{{ dish.type.slug }}">{{ dish }}
-                                    {% if dish.category%}
-                                        {% for category in dish.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.dinner.dishes.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dish">
-                            {% for accompagnement in day.dinnerOfTheDay.accompagnements.toArray %}
-                                <span class="{{ accompagnement.type.slug }}">{{ accompagnement }}
-                                    {% if accompagnement.category%}
-                                        {% for category in accompagnement.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.dinner.accompagnements.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for laitage in day.dinnerOfTheDay.laitiers.toArray %}
-                                <span class="{{ laitage.type.slug }}">{{ laitage }}
-                                    {% if laitage.category%}
-                                        {% for category in laitage.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dish py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.dinner.laitiers.toArray
+                            } %}
                         </p>
-                        <hr>
-                        <p class="dessert">
-                            {% for dessert in day.dinnerOfTheDay.desserts.toArray %}
-                                <span class="{{ dessert.type.slug }}">{{ dessert }}
-                                    {% if dessert.category%}
-                                        {% for category in dessert.category.toArray %}
-                                            {% if category == 'aucune' %}
-                                            {% else %}
-                                                <img src="{{ asset('images/logo/' ~ category.icon) }}" alt="">
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endif %}
-                            &nbsp;</span>
-                            {% endfor %}
+                        <p class="dessert py-2">
+                            {% include 'components/_menu-content.html.twig' with {
+                                dishType: day.dinner.desserts.toArray
+                            } %}
                         </p>
                     </td>
                 </tr>
@@ -177,22 +83,7 @@
             </tbody>
         </table>
     </section>
-    <section class="legends noPrint">
-        <aside>
-            <h3>Code Couleur</h3>
-            <div>
-                {% for type in types %}
-                    <p class="{{ type.slug }}">{{ type.codeCouleur }} : {{ type.description }}</p>
-                {% endfor %}
-            </div>
-        </aside>
-        <aside>
-            <h3>Logos</h3>
-            <div>
-                {% for category in categories %}
-                    <span><img src="{{ asset('images/logo/' ~ category.icon) }}" alt="logo"> : {{ category.name }}</span>
-                {% endfor %}
-            </div>
-        </aside>
-    </section>
+    <p class="text-xs">Sous réserve des approvisionements et des arrivages primeurs.</p>
+    <p class="text-xs">Tous nos plats sont suceptibles de contenir des traces de fruits à coques.</p>
+    {% include 'components/_menu-legend.html.twig' %}
 {% endblock %}

@@ -25,29 +25,13 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-        //return parent::index();
-
-        // Option 1. You can make your dashboard redirect to some common page of your backend
-        //
-        // $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-        // return $this->redirect($adminUrlGenerator->setController(OneOfYourCrudController::class)->generateUrl());
-
-        // Option 2. You can make your dashboard redirect to different pages depending on the user
-        //
-        // if ('jane' === $this->getUser()->getUsername()) {
-        //     return $this->redirect('...');
-        // }
-
-        // Option 3. You can render some custom template to display a proper dashboard with widgets, etc.
-        // (tip: it's easier if your template extends from @EasyAdmin/page/content.html.twig)
-        //
         return $this->render('admin/dashboard.html.twig');
     }
 
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('<img src="images/logo/lyceehoche.svg"> Lycée Hoche')
+            ->setTitle('<div class="flex flex-col text-center"><img width="100" src="logo.svg" alt="logo"><span class="sr-only">Lycée Hoche</span></div>')
             ->setFaviconPath('images/logo/lyceehoche.svg')
             ;
     }
@@ -58,9 +42,6 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToUrl('Retour au site', 'fas fa-link', '/'),
             MenuItem::linkToCrud('Jours', 'fas fa-calendar-day', Day::class),
             //MenuItem::linkToCrud('Jours', 'fas fa-calendar-day', Day::class),
-            MenuItem::section('Repas'),
-                MenuItem::linkToCrud('Déjeuners', 'fas fa-sun', Lunch::class),
-                MenuItem::linkToCrud('Diners', 'fas fa-moon', Dinner::class),
             MenuItem::section('Type de plats'),
                 MenuItem::linkToCrud('Entrées', 'fas fa-utensils', Starter::class),
                 MenuItem::linkToCrud('Plats', 'fas fa-utensils', Dish::class),

@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    <section class="login">
+    <section class="pt-4">
         <form class="form" method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -17,12 +17,15 @@
                 </div>
             {% endif %}
 
-            <label for="inputEmail">Email</label>
-            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-                   autocomplete="email" required autofocus>
-            <label for="inputPassword">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control"
-                   autocomplete="current-password" required>
+            <div>
+                <label for="inputEmail" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" autofocus class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="inputPassword" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                <input type="password" name="password" id="inputPassword" autocomplete="current-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+            </div>
 
             <input
                     type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">

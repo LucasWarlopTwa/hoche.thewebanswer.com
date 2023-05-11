@@ -1,0 +1,86 @@
+<section class="py-2 overflow-x-scroll">
+    <table class="bordered">
+        <thead>
+        <tr>
+            <th>Type</th>
+            {% for day in week %}
+                <th>
+                    {% set trans_day_hash = {
+                        "Monday": "Lundi",
+                        "Tuesday": "Mardi",
+                        "Wednesday": "Mercredi",
+                        "Thursday": "Jeudi",
+                        "Friday": "Vendredi",
+                        "Saturday": "Samedi",
+                        "Sunday": "Dimanche"
+                    }
+                    %}
+                    {{ trans_day_hash[day.dateOfService|date('l')] }}
+                </th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Entrée</th>
+            {% for day in week %}
+                <td {% if day.lunch.starters is empty %}class="bg-gray-50"{% endif %}>
+                    <p class="starter">
+                        {% include 'components/_menu-content.html.twig' with {
+                            dishType: day.lunch.starters.toArray
+                        } %}
+                    </p>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Plat Protidique</th>
+            {% for day in week %}
+                <td {% if day.lunch.dishes is empty %}class="bg-gray-50"{% endif %}>
+                    <p class="">
+                        {% include 'components/_menu-content.html.twig' with {
+                            dishType: day.lunch.dishes.toArray
+                        } %}
+                    </p>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Accompagnement</th>
+            {% for day in week %}
+                <td {% if day.lunch.accompagnements is empty %}class="bg-gray-50"{% endif %}>
+                    <p class="dish">
+                        {% include 'components/_menu-content.html.twig' with {
+                            dishType: day.lunch.accompagnements.toArray
+                        } %}
+                    </p>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Laitage</th>
+            {% for day in week %}
+                <td {% if day.lunch.laitiers is empty %}class="bg-gray-50"{% endif %}>
+                    <p class="dessert">
+                        {% include 'components/_menu-content.html.twig' with {
+                            dishType: day.lunch.laitiers.toArray
+                        } %}
+                    </p>
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Dessert</th>
+            {% for day in week %}
+                <td {% if day.lunch.desserts is empty %}class="bg-gray-50"{% endif %}>
+                    <p class="dessert">
+                        {% include 'components/_menu-content.html.twig' with {
+                            dishType: day.lunch.desserts.toArray
+                        } %}
+                    </p>
+                </td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+</section>

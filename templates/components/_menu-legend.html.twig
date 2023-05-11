@@ -1,0 +1,31 @@
+<section class="flex flex-row justify-between pt-4">
+    <aside>
+        <h3 class="text-lg font-semibold">Code Couleur</h3>
+        <div class="couleurs">
+            {% for type in types %}
+                <p style="color:{{ type.codeCouleur }};">{{ type.name}} : {{ type.description|capitalize }}</p>
+            {% endfor %}
+        </div>
+    </aside>
+    <aside>
+        <h3 class="text-lg font-semibold">Logos</h3>
+        <div class="grid grid-cols-2">
+            {% for category in categories %}
+                <span class="flex flex-row items-center gap-1">
+                    <img width="25" src="{{ vich_uploader_asset(category, 'imageFile') }}" alt="{{ category.name }}"> :
+                    <span>{{ category.name }}</span>
+                </span>
+            {% endfor %}
+        </div>
+    </aside>
+</section>
+<section class="print:grid print:grid-cols-2 hidden">
+    <div class="flex flex-col text-center">
+        <h3 class="font-semibold">Le Gestionnaire</h3>
+        <p class="font-accent">N. ROLLOT-BASCHET</p>
+    </div>
+    <div class="flex flex-col text-center">
+        <h3 class="font-semibold">Le Proviseur</h3>
+        <p class="font-accent">G. SEGUIN</p>
+    </div>
+</section>

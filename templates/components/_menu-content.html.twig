@@ -1,0 +1,14 @@
+{% for starter in dishType %}
+    <span class="inline-flex gap-1" style="color:{{ starter.type.codeCouleur|default('#000000') }} !important;">
+        {{ starter }}
+        {% if starter.category%}
+            {% for category in starter.category.toArray %}
+                {% if category == 'aucune' %}
+                {% else %}
+                    <img width="20" src="{{ vich_uploader_asset(category, 'imageFile') }}" alt="{{ category.name }}">
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </span>
+    <br>
+{% endfor %}

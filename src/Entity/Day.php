@@ -17,11 +17,11 @@ class Day
     #[ORM\Column(type: 'date')]
     private $dateOfService;
 
-    #[ORM\ManyToOne(targetEntity: Lunch::class, inversedBy: 'days')]
-    private $lunchOfTheDay;
+    #[ORM\OneToOne(inversedBy: 'day', cascade: ['persist', 'remove'])]
+    private ?Lunch $lunch = null;
 
-    #[ORM\ManyToOne(targetEntity: Dinner::class, inversedBy: 'days')]
-    private $dinnerOfTheDay;
+    #[ORM\OneToOne(inversedBy: 'day', cascade: ['persist', 'remove'])]
+    private ?Dinner $dinner = null;
 
 
     public function __toString()
@@ -55,26 +55,26 @@ class Day
         return $this;
     }
 
-    public function getLunchOfTheDay(): ?Lunch
+    public function getLunch(): ?Lunch
     {
-        return $this->lunchOfTheDay;
+        return $this->lunch;
     }
 
-    public function setLunchOfTheDay(?Lunch $lunchOfTheDay): self
+    public function setLunch(?Lunch $lunch): self
     {
-        $this->lunchOfTheDay = $lunchOfTheDay;
+        $this->lunch = $lunch;
 
         return $this;
     }
 
-    public function getDinnerOfTheDay(): ?Dinner
+    public function getDinner(): ?Dinner
     {
-        return $this->dinnerOfTheDay;
+        return $this->dinner;
     }
 
-    public function setDinnerOfTheDay(?Dinner $dinnerOfTheDay): self
+    public function setDinner(?Dinner $dinner): self
     {
-        $this->dinnerOfTheDay = $dinnerOfTheDay;
+        $this->dinner = $dinner;
 
         return $this;
     }

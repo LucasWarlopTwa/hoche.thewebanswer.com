@@ -36,31 +36,114 @@ class DayRepository extends ServiceEntityRepository
     }
     */
 
-	public function findDaysOfWeek(): array
+	public function findDaysOfActualWeek(): array
 	{
-		$currentDate = new \DateTimeImmutable('now');
-		$monday = $currentDate->modify('monday this week');
-		$sunday = $currentDate->modify('sunday this week');
+		// Determine the current date
+		$date = new \DateTime();
 
-		$qb = $this->createQueryBuilder('d')
-			->where('d.dateOfService >= :monday')
-			->andWhere('d.dateOfService <= :sunday')
-			->setParameter('monday', $monday)
-			->setParameter('sunday', $sunday)
-			->orderBy('d.dateOfService', 'ASC');
+		// Determine the start and end date of the week
+		$start = clone $date;
+		$start->modify('monday this week');
+		$end = clone $start;
+		$end->modify('sunday this week');
 
-		return $qb->getQuery()->getResult();
+		// Query the database for days within the week
+		$query = $this->createQueryBuilder('d')
+			->where('d.dateOfService >= :start')
+			->andWhere('d.dateOfService <= :end')
+			->setParameter('start', $start)
+			->setParameter('end', $end)
+			->orderBy('d.dateOfService', 'ASC')
+			->getQuery();
+
+		// Return the results along with the start and end dates
+		return [
+			'start' => $start,
+			'end' => $end,
+			'days' => $query->getResult(),
+		];
 	}
 
-    /*
-    public function findOneBySomeField($value): ?Day
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+	public function findWeeksOfMonth(): array
+	{
+		$currentDate = new \DateTimeImmutable('now');
+		$firstDayOfMonth = $currentDate->modify('first day of this month');
+		$lastDayOfMonth = $currentDate->modify('last day of this month');
+
+		$weeks = [];
+		for($i=0; $i<4; $i++) {
+			$monday = $firstDayOfMonth->modify('+' . $i*7 . ' days');
+			$sunday = min($monday->modify('+6 days'), $lastDayOfMonth);
+
+			$start = clone $monday;
+			$start = $start->modify('monday this week');
+			$end = clone $start;
+			$end = $end->modify('sunday this week');
+
+			$qb = $this->createQueryBuilder('d')
+				->where('d.dateOfService >= :monday')
+				->andWhere('d.dateOfService <= :sunday')
+				->setParameter('monday', $start)
+				->setParameter('sunday', $end)
+				->orderBy('d.dateOfService', 'ASC');
+
+			$weeks[] = [
+				'start' => $monday,
+				'end' => $sunday,
+				'days' => $qb->getQuery()->getResult(),
+			];
+		}
+
+		return $weeks;
+	}
+
+
+	public function findDayData($date)
+	{
+		return $this->createQueryBuilder('d')
+			->andWhere('d.dateOfService = :val')
+			->setParameter('val', $date)
+			->getQuery()
+			->getOneOrNullResult();
+	}
+
+	public function findDaysOfWeeks(\DateTime $date)
+	{
+		// Determine the start and end date of the week
+		$start = clone $date;
+		$start->modify('monday this week');
+		$end = clone $start;
+		$end->modify('sunday this week');
+
+		// Query the database for days within the week
+		$query = $this->createQueryBuilder('d')
+			->where('d.dateOfService >= :start')
+			->andWhere('d.dateOfService <= :end')
+			->setParameter('start', $start)
+			->setParameter('end', $end)
+			->orderBy('d.dateOfService', 'ASC')
+			->getQuery();
+
+		// Return the results along with the start and end dates
+		return [
+			'start' => $start,
+			'end' => $end,
+			'days' => $query->getResult(),
+		];
+	}
+
+
+
+	/*
+	public function findOneBySomeField($value): ?Day
+	{
+		return $this->createQueryBuilder('d')
+			->andWhere('d.exampleField = :val')
+			->setParameter('val', $value)
+			->getQuery()
+			->getOneOrNullResult()
+		;
+	}
+	*/
 }

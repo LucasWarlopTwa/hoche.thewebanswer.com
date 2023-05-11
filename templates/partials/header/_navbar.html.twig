@@ -1,0 +1,41 @@
+<div class="flex flex-row justify-between items-center w-full">
+    <nav class="flex flex-row justify-center items-center gap-4">
+        {% include 'components/_btn-nav.html.twig' with {
+            href: path('actual_week_lunch'),
+            content: "Semaine"
+        } %}
+        {% include 'components/_btn-nav.html.twig' with {
+            href: path('actual_month_lunch'),
+            content: "Mois"
+        } %}
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include 'components/_btn-nav.html.twig' with {
+                href: path('lunch_by_year'),
+                content: "Année"
+            } %}
+            {% include 'components/_btn-nav.html.twig' with {
+                href: path('actual_week'),
+                content: "Vue semaine"
+            } %}
+        {% endif %}
+    </nav>
+    <nav class="inline-flex flex-row justify-center items-center gap-4">
+        {% if is_granted('ROLE_ADMIN') %}
+            {% include 'components/_btn-nav.html.twig' with {
+                href: path('admin'),
+                content: "Admin"
+            } %}
+        {% endif %}
+        {% if app.user %}
+            {% include 'components/_btn-nav.html.twig' with {
+                href: path('app_logout'),
+                content: "Déconnexion"
+            } %}
+        {% else %}
+            {% include 'components/_btn-nav.html.twig' with {
+                href: path('app_login'),
+                content: "Connexion"
+            } %}
+        {% endif %}
+    </nav>
+</div>

@@ -13,6 +13,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 
 class DayCrudController extends AbstractCrudController
 {
@@ -26,17 +29,35 @@ class DayCrudController extends AbstractCrudController
             // the labels used to refer to this entity in titles, buttons, etc.
             ->setEntityLabelInSingular('Jour')
             ->setEntityLabelInPlural('Jours')
-            ;
+	        ->setDefaultSort(['dateOfService' => 'DESC'])
+	        ->showEntityActionsInlined();
+
     }
+
+	public function configureFilters(Filters $filters): Filters
+	{
+		return $filters
+			->add('dateOfService')
+			;
+	}
+
+	public function configureActions(Actions $actions): Actions
+	{
+		return $actions
+			->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER)
+			;
+	}
     public function configureFields(string $pageName): iterable
     {
         return [
+	        FormField::addTab('Date'),
             //TextField::new('name', 'Nom du jours'),
-            DateField::new('dateOfService', 'Date'),
-            //FormField::addPanel()->setProperty('lunchOfTheDay')->setFormType(LunchType::class),
-            //FormField::addPanel()->setProperty('dinnerOfTheDay')->setFormType(DinnerType::class),
-            AssociationField::new('lunchOfTheDay', 'Déjeuner'),
-            AssociationField::new('dinnerOfTheDay', 'Dinner'),
+            DateField::new('dateOfService', 'Date')->setFormat('long'),
+	        FormField::addTab('Déjeuner'),
+	        AssociationField::new('lunch', 'Déjeuner')->hideOnIndex()->renderAsEmbeddedForm(),
+	        FormField::addTab('Diner'),
+            AssociationField::new('dinner', 'Dinner')->hideOnIndex()->renderAsEmbeddedForm(),
         ];
     }
 }
+

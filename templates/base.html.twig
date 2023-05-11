@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app.request.locale }}" class="scroll-smooth">
     <head>
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lycée Hoche | {% block title %}{% endblock %}</title>
-        <script src="https://kit.fontawesome.com/9f1b0ef40e.js" crossorigin="anonymous"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Montserrat:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+        <title>{% block title %}{% endblock %} | {{ 'app.title'|trans({}, 'global') }}</title>
+
+        {% include 'partials/head/metatags.html.twig' %}
+        {% include 'partials/head/favicons.html.twig' %}
+        {% include 'partials/head/socials.html.twig' %}
+        {% include 'partials/head/externals.html.twig' %}
+        {% include 'partials/head/script.html.twig' %}
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -17,11 +18,19 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        {% include 'header.html.twig' %}
-        <main>
+    <body class="font-body duration-300">
+        <header class="flex flex-row items-center gap-4 py-2 bg-primary-200 px-4 md:px-8 lg:px-16 xl:px-32 print:hidden">
+            {% include 'components/_logo.html.twig' with {
+                w: "50",
+                h: "50"
+            } %}
+            {% include 'partials/header/_navbar.html.twig' %}
+        </header>
+        <main class="px-4 md:px-8 lg:px-16 xl:px-32">
             {% block body %}{% endblock %}
         </main>
-        {% include 'footer.html.twig' %}
+        <footer class="px-4 md:px-8 lg:px-16 xl:px-32">
+
+        </footer>
     </body>
 </html>

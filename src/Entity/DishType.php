@@ -30,9 +30,6 @@ class DishType
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Starter::class)]
     private $starters;
 
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Dish::class)]
-    private $dishesbytype;
-
     #[ORM\OneToMany(mappedBy: 'type', targetEntity: Dessert::class)]
     private $desserts;
 
@@ -56,7 +53,6 @@ class DishType
     {
         $this->dishes = new ArrayCollection();
         $this->starters = new ArrayCollection();
-        $this->dishesbytype = new ArrayCollection();
         $this->desserts = new ArrayCollection();
         $this->accompagnements = new ArrayCollection();
         $this->laitiers = new ArrayCollection();
@@ -163,35 +159,6 @@ class DishType
         return $this;
     }
 
-    /**
-     * @return Collection|Dish[]
-     */
-    public function getDishesbytype(): Collection
-    {
-        return $this->dishesbytype;
-    }
-
-    public function addDishesbytype(Dish $dishesbytype): self
-    {
-        if (!$this->dishesbytype->contains($dishesbytype)) {
-            $this->dishesbytype[] = $dishesbytype;
-            $dishesbytype->setType($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDishesbytype(Dish $dishesbytype): self
-    {
-        if ($this->dishesbytype->removeElement($dishesbytype)) {
-            // set the owning side to null (unless already changed)
-            if ($dishesbytype->getType() === $this) {
-                $dishesbytype->setType(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Dessert[]

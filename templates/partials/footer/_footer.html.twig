@@ -1,0 +1,29 @@
+<footer class="bg-primary-700 dark:bg-primary-300 pt-10 pb-5 flex flex-col justify-center text-center">
+    <div class="">
+        <a href="#" class="flex flex-row gap-1 justify-center items-center text-2xl">
+            <svg width="40" height="40" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M69.7417 55.5277C68.5267 52.2928 67.3118 49.0579 66.0968 45.8179H57.887C58.622 43.878 59.3519 41.933 60.0869 39.9931H63.9068L61.9919 34.8882L64.9118 27.1433L71.8267 45.5829C72.2717 46.7579 72.7117 47.9379 73.1516 49.1179C76.9316 37.4931 74.8166 24.7534 67.4768 14.9736C65.8418 19.3385 64.2068 23.6984 62.5669 28.0583C62.0469 29.4583 61.5269 30.8632 61.0069 32.2632L60.9919 32.2282C60.0219 34.8182 59.0519 37.4031 58.082 39.9931C57.352 41.933 56.627 43.878 55.897 45.8179L52.2521 55.5277H46.4272C43.5173 47.7529 40.6073 39.9831 37.6874 32.2182C35.1074 39.0931 32.5325 45.9679 29.9476 52.8478L27.0226 45.118L34.7725 24.4534H40.5973L49.3371 47.7529L52.2521 39.9831L58.077 24.4484L63.3669 10.3537C48.3772 -3.93101 24.6477 -3.36603 10.358 11.6237C6.84305 15.3086 4.1131 19.6785 2.34314 24.4534H27.0076V30.2783H19.4828L26.0376 47.7529L28.9476 55.5227H23.1227L13.6579 30.2733H0.713176C-3.28674 50.5878 9.94298 70.2974 30.2626 74.2923C46.0172 77.3923 61.9969 70.1174 70.0017 56.2027L69.7417 55.5177V55.5277Z" fill="#F8FAFC"/>
+            </svg>
+            <span class="font-display font-semibold">TheWebAnswer</span>
+        </a>
+        <p class="max-w-2xl mx-auto py-5">{{ 'app.description'|trans({}, 'global') }}</p>
+        <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+            <li>
+                <a href="" class="mr-4 hover:underline md:mr-6 ">{{ 'footer.about'|trans({}, 'global') }}</a>
+            </li>
+            <li>
+                <a href="" class="mr-4 hover:underline md:mr-6">{{ 'footer.portfolio'|trans({}, 'global') }}</a>
+            </li>
+            <li>
+                <a href="" class="mr-4 hover:underline md:mr-6 ">{{ 'footer.contact'|trans({}, 'global') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('app_tou') }}" class="mr-4 hover:underline md:mr-6">{{ 'footer.cgu'|trans({}, 'global') }}</a>
+            </li>
+            <li>
+                <a href="{{ path('app_pp') }}" class="mr-4 hover:underline md:mr-6">{{ 'footer.rgpd'|trans({}, 'global') }}</a>
+            </li>
+        </ul>
+        <span class="text-sm sm:text-center">© 2023 <a href="https://thewebanswer.net/" target="_blank" class="cursor-pointer hover:underline">TheWebAnswer™</a>. {{ 'footer.legal'|trans({}, 'global') }}</span>
+    </div>
+</footer>

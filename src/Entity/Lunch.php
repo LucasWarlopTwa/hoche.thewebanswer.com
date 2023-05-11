@@ -15,9 +15,6 @@ class Lunch
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'lunchOfTheDay', targetEntity: Day::class)]
-    private $days;
-
     #[ORM\ManyToMany(targetEntity: Starter::class, inversedBy: 'lunches')]
     private $starters;
 
@@ -33,16 +30,30 @@ class Lunch
     #[ORM\ManyToMany(targetEntity: Laitier::class, inversedBy: 'lunches')]
     private $laitiers;
 
+    #[ORM\OneToOne(mappedBy: 'lunch', cascade: ['persist', 'remove'])]
+    private ?Day $day = null;
 
 
-    public function __toString()
-    {
-        return "Déjeuner";
-    }
+
+	public function __toString()
+	{
+		// Assurez-vous que getDay() renvoie une instance de DateTime
+		$day = $this->getDay();
+
+		// Vous pouvez vérifier si $day est une instance de DateTime avant de l'utiliser
+		if ($day instanceof \DateTime) {
+			// Formattez la date en une chaîne de caractères. Ici, nous utilisons le format 'd-m-Y',
+			// mais vous pouvez le changer en fonction de vos besoins.
+			return 'Déjeuner du ' . $day->format('d-m-Y');
+		} else {
+			// Si $day n'est pas une instance de DateTime, vous pouvez retourner une chaîne de caractères vide,
+			// ou une autre valeur par défaut de votre choix.
+			return 'N/A';
+		}
+	}
 
     public function __construct()
     {
-        $this->days = new ArrayCollection();
         $this->starters = new ArrayCollection();
         $this->desserts = new ArrayCollection();
         $this->dishes = new ArrayCollection();
@@ -53,36 +64,6 @@ class Lunch
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection|Day[]
-     */
-    public function getDays(): Collection
-    {
-        return $this->days;
-    }
-
-    public function addDay(Day $day): self
-    {
-        if (!$this->days->contains($day)) {
-            $this->days[] = $day;
-            $day->setLunchOfTheDay($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDay(Day $day): self
-    {
-        if ($this->days->removeElement($day)) {
-            // set the owning side to null (unless already changed)
-            if ($day->getLunchOfTheDay() === $this) {
-                $day->setLunchOfTheDay(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -201,6 +182,28 @@ class Lunch
     public function removeLaitier(Laitier $laitier): self
     {
         $this->laitiers->removeElement($laitier);
+
+        return $this;
+    }
+
+    public function getDay(): ?Day
+    {
+        return $this->day;
+    }
+
+    public function setDay(?Day $day): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($day === null && $this->day !== null) {
+            $this->day->setLunch(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($day !== null && $day->getLunch() !== $this) {
+            $day->setLunch($this);
+        }
+
+        $this->day = $day;
 
         return $this;
     }

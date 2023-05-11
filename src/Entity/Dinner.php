@@ -15,9 +15,6 @@ class Dinner
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToMany(mappedBy: 'dinnerOfTheDay', targetEntity: Day::class)]
-    private $days;
-
     #[ORM\ManyToMany(targetEntity: Starter::class, inversedBy: 'dinners')]
     private $starters;
 
@@ -33,15 +30,17 @@ class Dinner
     #[ORM\ManyToMany(targetEntity: Laitier::class, inversedBy: 'dinners')]
     private $laitiers;
 
+    #[ORM\OneToOne(mappedBy: 'dinner', cascade: ['persist', 'remove'])]
+    private ?Day $day = null;
+
 
     public function __toString()
     {
-        return "Diner";
+        return "Diner #".$this->getId();
     }
 
     public function __construct()
     {
-        $this->days = new ArrayCollection();
         $this->starters = new ArrayCollection();
         $this->dishes = new ArrayCollection();
         $this->desserts = new ArrayCollection();
@@ -52,37 +51,6 @@ class Dinner
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-
-    /**
-     * @return Collection|Day[]
-     */
-    public function getDays(): Collection
-    {
-        return $this->days;
-    }
-
-    public function addDay(Day $day): self
-    {
-        if (!$this->days->contains($day)) {
-            $this->days[] = $day;
-            $day->setDinnerOfTheDay($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDay(Day $day): self
-    {
-        if ($this->days->removeElement($day)) {
-            // set the owning side to null (unless already changed)
-            if ($day->getDinnerOfTheDay() === $this) {
-                $day->setDinnerOfTheDay(null);
-            }
-        }
-
-        return $this;
     }
 
     /**
@@ -201,6 +169,28 @@ class Dinner
     public function removeLaitier(Laitier $laitier): self
     {
         $this->laitiers->removeElement($laitier);
+
+        return $this;
+    }
+
+    public function getDay(): ?Day
+    {
+        return $this->day;
+    }
+
+    public function setDay(?Day $day): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($day === null && $this->day !== null) {
+            $this->day->setDinner(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($day !== null && $day->getDinner() !== $this) {
+            $day->setDinner($this);
+        }
+
+        $this->day = $day;
 
         return $this;
     }

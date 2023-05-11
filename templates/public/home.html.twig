@@ -1,48 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil | {% endblock %}
 
 {% block body %}
-    <section class="home-header">
-        <h1>Accueil</h1>
-    </section>
     <section>
-        <h2>Semaine en cours</h2>
-        <div class="home-content">
-            <a href="{{ path('actual_lunch') }}">
-                <p>
-                    <i class="fad fa-utensils-alt"></i>
-                    <br>
-                    Déjeuner</p>
-            </a>
-            <a href="{{ path('actual_dinner') }}">
-                <p>
-                    <i class="fad fa-utensils-alt"></i>
-                    <br>
-                    Diner
-                </p>
-            </a>
-        </div>
+        <h2 class="title-2">Semaine en cours</h2>
+
         <h2>Gestion</h2>
         <div class="home-content">
-            <a href="{{ path('admin') }}">
-                <p>
-                    <i class="fad fa-tools"></i>
-                    <br>
-                    Administration
-                </p>
-            </a>
-            <a href="{{ path('weeks') }}">
-                <p>
-                    <i class="fad fa-calendar-week"></i>
-                    <br>
-                    Semaines</p>
-            </a>
-            <a href="{{ path('soon') }}">
-                <p>
-                    <i class="fad fa-calendar-week"></i>
-                    <br>
-                    Mois</p>
+            <a class="btn btn-primary" href="{{ path('admin') }}">
+                <span>Administration</span>
             </a>
         </div>
     </section>

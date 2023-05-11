@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('menu') }}
+{% endblock %}
+
+{% block body %}
+    <section class="pt-4">
+        <h2 class="text-lg font-semibold font-display">Semaine du {{ start|format_datetime(locale='fr',pattern="dd MMMM") }} au {{ end|format_datetime(locale='fr',pattern="dd MMMM") }}</h2>
+    </section>
+    <nav class=" flex flex-row items-center gap-4 py-2 print:hidden">
+        {% include 'components/_btn-nav.html.twig' with {
+            href: path('lunch_by_week', {date: start|date('Y-m-d')}),
+            content: "Déjeuner"
+        } %}
+        {% include 'components/_btn-nav.html.twig' with {
+            href: path('dinner_by_week', {date: start|date('Y-m-d')}),
+            content: "Diner"
+        } %}
+    </nav>
+    {% include 'components/_menu-dinner-week.html.twig' with {
+        week: week
+    } %}
+    <p class="text-xs">Sous réserve des approvisionements et des arrivages primeurs.</p>
+    <p class="text-xs">Tous nos plats sont suceptibles de contenir des traces de fruits à coques.</p>
+    {% include 'components/_menu-legend.html.twig' %}
+{% endblock %}
